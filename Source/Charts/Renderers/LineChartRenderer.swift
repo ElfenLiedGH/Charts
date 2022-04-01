@@ -504,6 +504,11 @@ open class LineChartRenderer: LineRadarRenderer
                     }
                     
                     if dataSet.isDrawValuesEnabled {
+                        
+                        
+                        let y = pt.y - CGFloat(valOffset) - valueFont.lineHeight;
+                        let point = drawnLabels!.add(x: pt.x, y: y)
+                        
                         ChartUtils.drawText(
                             context: context,
                             text: formatter.stringForValue(
@@ -512,8 +517,8 @@ open class LineChartRenderer: LineRadarRenderer
                                 dataSetIndex: i,
                                 viewPortHandler: viewPortHandler),
                             point: CGPoint(
-                                x: pt.x,
-                                y: pt.y - CGFloat(valOffset) - valueFont.lineHeight),
+                                x: point[0],
+                                y: point[1]),
                             align: .center,
                             attributes: [NSAttributedString.Key.font: valueFont, NSAttributedString.Key.foregroundColor: dataSet.valueTextColorAt(j)])
                     }

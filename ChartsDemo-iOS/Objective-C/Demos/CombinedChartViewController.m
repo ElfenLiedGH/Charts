@@ -167,7 +167,8 @@
     
     for (int index = 0; index < ITEM_COUNT; index++)
     {
-        [entries addObject:[[ChartDataEntry alloc] initWithX:index + 0.5 y:(arc4random_uniform(15) + 5)]];
+        [entries addObject:[[ChartDataEntry alloc] initWithX:index + 0.5 y:55]];
+//        [entries addObject:[[ChartDataEntry alloc] initWithX:index + 0.5 y:(arc4random_uniform(15) + 5)]];
     }
     
     LineChartDataSet *set = [[LineChartDataSet alloc] initWithEntries:entries label:@"Line DataSet"];
@@ -196,10 +197,12 @@
     
     for (int index = 0; index < ITEM_COUNT; index++)
     {
-        [entries1 addObject:[[BarChartDataEntry alloc] initWithX:0.0 y:(arc4random_uniform(25) + 25)]];
-        
+        [entries1 addObject:[[BarChartDataEntry alloc] initWithX:0.0 y:50]];
+//        [entries1 addObject:[[BarChartDataEntry alloc] initWithX:0.0 y:(arc4random_uniform(25) + 25)]];
+
         // stacked
-        [entries2 addObject:[[BarChartDataEntry alloc] initWithX:0.0 yValues:@[@(arc4random_uniform(13) + 12), @(arc4random_uniform(13) + 12)]]];
+        [entries2 addObject:[[BarChartDataEntry alloc] initWithX:0.0 yValues:@[@(50), @(50)]]];
+//        [entries2 addObject:[[BarChartDataEntry alloc] initWithX:0.0 yValues:@[@(arc4random_uniform(13) + 12), @(arc4random_uniform(13) + 12)]]];
     }
 
     BarChartDataSet *set1 = [[BarChartDataSet alloc] initWithEntries:entries1 label:@"Bar 1"];

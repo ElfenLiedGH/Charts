@@ -23,6 +23,8 @@ import Cocoa
 @objc(ChartDataRendererBase)
 open class DataRenderer: Renderer
 {
+    
+    public var drawnLabels: DrawnLabels?
     /// An array of accessibility elements that are presented to the ChartViewBase accessibility methods.
     ///
     /// Note that the order of elements in this array determines the order in which they are presented and navigated by
@@ -45,7 +47,7 @@ open class DataRenderer: Renderer
     {
         fatalError("drawData() cannot be called on DataRenderer")
     }
-    
+    	
     @objc open func drawValues(context: CGContext)
     {
         fatalError("drawValues() cannot be called on DataRenderer")

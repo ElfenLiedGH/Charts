@@ -554,6 +554,11 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                         
                         if dataSet.isDrawValuesEnabled
                         {
+                            let y = val >= 0.0
+                            ? (rect.origin.y + posOffset)
+                            : (rect.origin.y + rect.size.height + negOffset)
+                            let point = drawnLabels?.add(x: x, y: y)
+                            
                             drawValue(
                                 context: context,
                                 value: formatter.stringForValue(
@@ -561,10 +566,8 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                                     entry: e,
                                     dataSetIndex: dataSetIndex,
                                     viewPortHandler: viewPortHandler),
-                                xPos: x,
-                                yPos: val >= 0.0
-                                    ? (rect.origin.y + posOffset)
-                                    : (rect.origin.y + rect.size.height + negOffset),
+                                xPos: point![0],
+                                yPos: point![1],
                                 font: valueFont,
                                 align: .center,
                                 color: dataSet.valueTextColorAt(j))
@@ -621,6 +624,9 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                             
                             if dataSet.isDrawValuesEnabled
                             {
+                                let y = rect.origin.y +
+                                (e.y >= 0 ? posOffset : negOffset)
+                                let point = drawnLabels?.add(x: x, y: y)
                                 drawValue(
                                     context: context,
                                     value: formatter.stringForValue(
@@ -628,9 +634,8 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                                         entry: e,
                                         dataSetIndex: dataSetIndex,
                                         viewPortHandler: viewPortHandler),
-                                    xPos: x,
-                                    yPos: rect.origin.y +
-                                        (e.y >= 0 ? posOffset : negOffset),
+                                    xPos: point![0],
+                                    yPos: point![1],
                                     font: valueFont,
                                     align: .center,
                                     color: dataSet.valueTextColorAt(index))
@@ -707,6 +712,7 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                                 
                                 if dataSet.isDrawValuesEnabled
                                 {
+                                    let point = drawnLabels?.add(x: x, y: y)
                                     drawValue(
                                         context: context,
                                         value: formatter.stringForValue(
@@ -714,8 +720,8 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                                             entry: e,
                                             dataSetIndex: dataSetIndex,
                                             viewPortHandler: viewPortHandler),
-                                        xPos: x,
-                                        yPos: y,
+                                        xPos: point![0],
+                                        yPos: point![1],
                                         font: valueFont,
                                         align: .center,
                                         color: dataSet.valueTextColorAt(index))

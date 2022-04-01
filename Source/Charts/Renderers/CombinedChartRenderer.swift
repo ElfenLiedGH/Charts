@@ -113,7 +113,11 @@ open class CombinedChartRenderer: DataRenderer
     
     open override func drawValues(context: CGContext)
     {
-        _renderers.forEach { $0.drawValues(context: context) }
+        let drawnLabels: DrawnLabels = DrawnLabels();
+        _renderers.forEach {
+            $0.drawnLabels = drawnLabels;
+            $0.drawValues(context: context);
+        }
     }
     
     open override func drawExtras(context: CGContext)

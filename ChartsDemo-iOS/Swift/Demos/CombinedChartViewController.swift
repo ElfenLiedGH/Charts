@@ -128,7 +128,8 @@ class CombinedChartViewController: DemoBaseViewController {
     
     func generateLineData() -> LineChartData {
         let entries = (0..<ITEM_COUNT).map { (i) -> ChartDataEntry in
-            return ChartDataEntry(x: Double(i) + 0.5, y: Double(arc4random_uniform(15) + 5))
+            return ChartDataEntry(x: Double(i) + 0.5, y: 25)
+//            return ChartDataEntry(x: Double(i) + 0.5, y: Double(arc4random_uniform(15) + 5))
         }
         
         let set = LineChartDataSet(entries: entries, label: "Line DataSet")
@@ -150,10 +151,12 @@ class CombinedChartViewController: DemoBaseViewController {
     
     func generateBarData() -> BarChartData {
         let entries1 = (0..<ITEM_COUNT).map { _ -> BarChartDataEntry in
-            return BarChartDataEntry(x: 0, y: Double(arc4random_uniform(25) + 25))
+            return BarChartDataEntry(x: 0, y: 25))
+           // return BarChartDataEntry(x: 0, y: Double(arc4random_uniform(25) + 25))
         }
         let entries2 = (0..<ITEM_COUNT).map { _ -> BarChartDataEntry in
-            return BarChartDataEntry(x: 0, yValues: [Double(arc4random_uniform(13) + 12), Double(arc4random_uniform(13) + 12)])
+            return BarChartDataEntry(x: 0, yValues: [25, 27])
+            //return BarChartDataEntry(x: 0, yValues: [Double(arc4random_uniform(13) + 12), Double(arc4random_uniform(13) + 12)])
         }
         
         let set1 = BarChartDataSet(entries: entries1, label: "Bar 1")

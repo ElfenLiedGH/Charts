@@ -153,14 +153,14 @@
 			remoteGlobalIDString = 06165F2E1D8110E600722320;
 			remoteInfo = ChartsTests;
 		};
-		0630AE531D81271B008859B0 /* PBXContainerItemProxy */ = {
+		225B368E1F6EBBB00005B3D5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0630AE391D8126C0008859B0 /* Charts.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = A58A4ED274A941CA248EA921;
 			remoteInfo = Charts;
 		};
-		225B368E1F6EBBB00005B3D5 /* PBXContainerItemProxy */ = {
+		601535B727F6E44B008778CE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 0630AE391D8126C0008859B0 /* Charts.xcodeproj */;
 			proxyType = 1;
@@ -636,7 +636,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				0630AE541D81271B008859B0 /* PBXTargetDependency */,
+				601535B827F6E44B008778CE /* PBXTargetDependency */,
 			);
 			name = "ChartsDemo-iOS";
 			productName = chartstest;
@@ -856,8 +856,8 @@
 				5BDEDC411ABB7F73007D3A60 /* HorizontalBarChartViewController.m in Sources */,
 				5BEAED121ABBFB2B0013F194 /* AnotherBarChartViewController.m in Sources */,
 				5BEAED311ABC18F00013F194 /* CubicLineChartViewController.m in Sources */,
-				5BEAED1D1ABBFB340013F194 /* StackedBarChartViewController.m in Sources */,
 				5BD47E601ABB3C91008FCEC6 /* LineChart2ViewController.m in Sources */,
+				5BEAED1D1ABBFB340013F194 /* StackedBarChartViewController.m in Sources */,
 				5B57BBB51A9B26AA0036A6CC /* main.m in Sources */,
 				5BEAED361ABC192F0013F194 /* RadarChartViewController.m in Sources */,
 				5B9624411B38608C007763E2 /* NegativeStackedBarChartViewController.m in Sources */,
@@ -867,15 +867,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		0630AE541D81271B008859B0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Charts;
-			targetProxy = 0630AE531D81271B008859B0 /* PBXContainerItemProxy */;
-		};
 		225B368F1F6EBBB00005B3D5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Charts;
 			targetProxy = 225B368E1F6EBBB00005B3D5 /* PBXContainerItemProxy */;
+		};
+		601535B827F6E44B008778CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Charts;
+			targetProxy = 601535B727F6E44B008778CE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

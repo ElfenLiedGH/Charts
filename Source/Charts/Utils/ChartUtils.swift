@@ -309,3 +309,91 @@ open class ChartUtils
         return _defaultValueFormatter
     }
 }
+
+
+//
+//  File.swift
+//
+//
+//  Created by Summerweb on 31.03.2022.
+//
+
+import Foundation
+import CoreGraphics
+//
+// Запоминаем уже нарисованные лейблы, что бы смешать при пересечении
+//
+public class DrawnLabels {
+    private final var labelsPosition: NSMutableDictionary = [:];
+    // На сколько выше сместим лейбл на графике
+    private final var Y_PARALLAX: Int = -10;
+    private final var X_PARALLAX: Int = 5;
+    // Сколько пикселей будем считать за единицу, например если 5, то позиции 103 и 104 приравняем к 105 и будем считать равными
+    private final var Y_ROUND: Int = 5;
+    private final var X_ROUND: Int = 5;
+    // Сколько соседних ячеек проверять на наличиие лейблов справа и слева
+    private final var X_NEIGHBORS: Int = 5 * 5;
+    // Сколько соседних ячеек проверять на наличиие лейблов сверху и снизу
+    private final var Y_NEIGHBORS: Int = 8 * 5;
+
+
+    private func convertValue(value: Float, positionRound: Int) -> Int {
+        let result: Int = Int(round(value / 10));
+        let round: Float = value.truncatingRemainder(dividingBy: 10);
+        return (result * 10) + (round > Float(positionRound) ? 5 : 0);
+    }
+
+    private func searchIntersection(x: Int, y: Int) -> [Int] {
+        let startStepX: Int = max(x - X_NEIGHBORS, 0);
+        // Ходим по оси X ищем похожих соседей
+        var stepX: Int = startStepX;
+        while(stepX <= x + X_NEIGHBORS){
+            let positionsY: NSMutableSet?? = labelsPosition[stepX] as! NSMutableSet??;
+            if (positionsY??.count == nil) {
+                stepX += X_ROUND;
+                continue;
+            }
+            let startStepY: Int = max(y + Y_NEIGHBORS, 0);
+            let stopStepY: Int = max(y - Y_NEIGHBORS, 0);
+            // Если нашли соседа, выходим, т.к. теперь надо начинать поиск заново с новым значением
+            var stepY: Int = startStepY;
+            while(stepY >= stopStepY){
+                if((positionsY as! NSSet).contains(stepY)){
+                    return [0, Y_PARALLAX];
+                }
+                stepY -= Y_ROUND;
+            }
+            stepX += X_ROUND;
+        }
+        return [0, 0];
+    }
+
+    public func add(x: CGFloat, y: CGFloat) -> [CGFloat] {
+        var originalValueY: Float = Float( y );
+        var convertedValueY: Int = convertValue(value: originalValueY, positionRound: Y_ROUND);
+        let convertedValueX: Int = convertValue(value: Float(x), positionRound: X_ROUND);
+
+        var intersectionGap: [Int] = searchIntersection(x: convertedValueX, y: convertedValueY);
+        while (intersectionGap[1] != 0) {
+            convertedValueY += intersectionGap[1];
+            originalValueY += Float(intersectionGap[1]);
+            // print("==>>: " + String(Float(x)) + " " + String(Float(y)) + "==> " + String(originalValueY));
+            intersectionGap = searchIntersection(x: convertedValueX, y: convertedValueY);
+        }
+
+        var positionsY: NSMutableSet?? = labelsPosition[convertedValueX] as! NSMutableSet??;
+        // Добавим, если в этой позиции оси Х еще не было лейблов
+        if (positionsY??.count == nil) {
+            positionsY = NSMutableSet();
+            labelsPosition[convertedValueX] = positionsY;
+        }
+
+        // Добавляем новый лейбл
+        positionsY!!.add(convertedValueY);
+        return [x, CGFloat(originalValueY)];
+    }
+
+    public func getData() -> NSMutableDictionary {
+        return labelsPosition;
+    }
+}
