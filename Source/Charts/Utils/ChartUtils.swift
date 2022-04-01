@@ -358,7 +358,7 @@ public class DrawnLabels {
             // Если нашли соседа, выходим, т.к. теперь надо начинать поиск заново с новым значением
             var stepY: Int = startStepY;
             while(stepY >= stopStepY){
-                if((positionsY as! NSSet).contains(stepY)){
+                if((positionsY as! NSMutableSet).contains(stepY)){
                     return [0, Y_PARALLAX];
                 }
                 stepY -= Y_ROUND;
@@ -385,7 +385,7 @@ public class DrawnLabels {
         // Добавим, если в этой позиции оси Х еще не было лейблов
         if (positionsY??.count == nil) {
             positionsY = NSMutableSet();
-            labelsPosition[convertedValueX] = positionsY;
+            labelsPosition[convertedValueX] = positionsY as Any?;
         }
 
         // Добавляем новый лейбл
