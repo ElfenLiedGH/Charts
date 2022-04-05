@@ -332,7 +332,7 @@ public class DrawnLabels {
     private final var Y_ROUND: Int = 5;
     private final var X_ROUND: Int = 5;
     // Сколько соседних ячеек проверять на наличиие лейблов справа и слева
-    private final var X_NEIGHBORS: Int = 3 * 5;
+    private final var X_NEIGHBORS: Int = 5 * 5;
     // Сколько соседних ячеек проверять на наличиие лейблов сверху и снизу
     private final var Y_NEIGHBORS: Int = 4 * 5;
 
@@ -357,7 +357,7 @@ public class DrawnLabels {
             let stopStepY: Int = max(y - Y_NEIGHBORS, 0);
             // Если нашли соседа, выходим, т.к. теперь надо начинать поиск заново с новым значением
             var stepY: Int = startStepY;
-            while(stepY >= stopStepY){
+            while(stepY > stopStepY){
                 if((positionsY as! NSMutableSet).contains(stepY)){
                     return [0, Y_PARALLAX];
                 }
