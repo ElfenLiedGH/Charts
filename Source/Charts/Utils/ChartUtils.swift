@@ -326,15 +326,15 @@ import CoreGraphics
 public class DrawnLabels {
     private final var labelsPosition: NSMutableDictionary = [:];
     // На сколько выше сместим лейбл на графике
-    private final var Y_PARALLAX: Int = -10;
+    private final var Y_PARALLAX: Int = -5;
     private final var X_PARALLAX: Int = 5;
     // Сколько пикселей будем считать за единицу, например если 5, то позиции 103 и 104 приравняем к 105 и будем считать равными
     private final var Y_ROUND: Int = 5;
     private final var X_ROUND: Int = 5;
     // Сколько соседних ячеек проверять на наличиие лейблов справа и слева
-    private final var X_NEIGHBORS: Int = 5 * 5;
+    private final var X_NEIGHBORS: Int = 3 * 5;
     // Сколько соседних ячеек проверять на наличиие лейблов сверху и снизу
-    private final var Y_NEIGHBORS: Int = 8 * 5;
+    private final var Y_NEIGHBORS: Int = 4 * 5;
 
 
     private func convertValue(value: Float, positionRound: Int) -> Int {
